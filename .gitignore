@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Tooling
+.ruff_cache/
+.mypy_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# detequal run artifacts (traces, reports) — do not commit generated data
+report.json
+*.trace.pt
+runs/
+traces/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
