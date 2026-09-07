@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "detequal"
+version = "0.0.1"
+description = "Localize and explain run-to-run nondeterminism in PyTorch models, layer by layer."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "detequal contributors" },
+]
+keywords = [
+    "pytorch",
+    "determinism",
+    "reproducibility",
+    "debugging",
+    "nondeterminism",
+    "fp4",
+    "nvfp4",
+    "blackwell",
+    "numerical",
+]
+# Trove classifiers: keep general-purpose framing (see proposal section 2),
+# not Blackwell-first.
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Testing",
+]
+
+# Runtime deps deliberately minimal. torch is the only hard requirement; the
+# tool is a diagnostic layer over the user's existing PyTorch install, so we
+# pin a tested lower bound (2.7 = first stable with native Blackwell sm_120)
+# rather than an upper cap that would fight the user's environment.
+# numpy comes in transitively with torch but is named explicitly since the
+# statistics module (section 4.3) uses it directly.
+dependencies = [
+    "torch>=2.7",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+# Everything needed to run the test suite and reproduce the validation tables.
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+# Extras for the example notebooks / empirical study (section 6). Kept out of
+# the core install so a reviewer installing from the README stays lightweight.
+examples = [
+    "jupyter>=1.0",
+    "matplotlib>=3.8",
+]
+
+[project.urls]
+# Filled with the real repo URL on Day 1 once the public repo exists.
+Homepage = "https://github.com/OWNER/detequal"
+Repository = "https://github.com/OWNER/detequal"
+Issues = "https://github.com/OWNER/detequal/issues"
+Changelog = "https://github.com/OWNER/detequal/blob/main/CHANGELOG.md"
+
+[project.scripts]
+detequal = "detequal.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["detequal"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Marker lets hardware-specific tests (section 5.2) be selected/skipped cleanly.
+markers = [
+    "cuda: test requires any CUDA device",
+    "blackwell: test requires a Blackwell (sm_120+) device with FP4 tensor cores",
+    "slow: overhead / multi-size benchmarks (section 5.3)",
+]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+
+[tool.coverage.run]
+source = ["detequal"]
+branch = true
