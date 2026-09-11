@@ -65,10 +65,10 @@ examples = [
 
 [project.urls]
 # Filled with the real repo URL on Day 1 once the public repo exists.
-Homepage = "https://github.com/OWNER/detequal"
-Repository = "https://github.com/OWNER/detequal"
-Issues = "https://github.com/OWNER/detequal/issues"
-Changelog = "https://github.com/OWNER/detequal/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/RyanDennis916/detequal.git"
+Repository = "https://github.com/RyanDennis916/detequal.git"
+Issues = "https://github.com/RyanDennis916/detequal/issues"
+Changelog = "https://github.com/RyanDennis916/detequal/blob/main/CHANGELOG.md"
 
 [project.scripts]
 detequal = "detequal.cli:main"

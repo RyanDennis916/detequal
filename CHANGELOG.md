@@ -20,5 +20,5 @@ reaches a first tagged release.
 ### Added
 - Repository made public. MIT `LICENSE` committed. First commit.
 
-[Unreleased]: https://github.com/OWNER/detequal/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/OWNER/detequal/releases/tag/v0.0.1
+[Unreleased]: https://github.com/RyanDennis916/detequal/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/RyanDennis916/detequal/releases

@@ -27,7 +27,7 @@ below, and made the core design decisions for the project.
 ## Entries
 
 ### 2026-09-07 — repository scaffold (code + docs)
-- Tool: Claude (Anthropic).
+- Tool: Claude, Opus 4.8 (Anthropic).
 - Scope: Generate the Day-1/Week-1 repository scaffold specified in the project
   proposal — directory layout, packaging metadata, license, contributor and
   changelog files, CI workflow, and skeleton implementations of the multi-run
@@ -35,8 +35,4 @@ below, and made the core design decisions for the project.
 - Generated: `LICENSE`, `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`,
   `pyproject.toml`, `.github/workflows/ci.yml`, `.gitignore`, this log, and
   skeleton modules under `detequal/` plus `tests/test_harness.py`.
-- Human review: PENDING — the author must review each generated file, verify the
-  packaging metadata and dependency pins against the intended environment, run
-  the test suite locally, and replace the `OWNER` placeholder in URLs with the
-  real repository path before the first public commit. Update this entry to
-  record what was changed once that review is done.
+- Human review: Complete — Each file reviewed and edited (significantly).
