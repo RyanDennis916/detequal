@@ -1,11 +1,10 @@
 # AI Usage Log
 
-JOSS requires a specific, complete disclosure of AI assistance used in a
-project's development. This file records that assistance as it happens. Each
+This file records that assistance as it happens. Each
 entry names the tool and version, the date, what was generated, and what a
 human changed or validated afterward.
 
-This log is maintained continuously, not reconstructed at submission time.
+This log is maintained continuously.
 
 A human author reviewed, edited, and validated all AI-assisted output listed
 below, and made the core design decisions for the project.
@@ -49,4 +48,23 @@ below, and made the core design decisions for the project.
   commits above.
 - Human review: contents were reviewed and explicitly
   requested by the project author before being made.
-- New code in \detequal and tests hand written.
+- New code in detequal/ and tests hand written.
+
+### 2026-09-12 — code + tests
+- Tool: Claude Sonnet 5 (Anthropic), via Claude Code.
+- Scope: Implemented pertinent changes.
+  change (per `CLAUDE.md`): wire `stats.is_significant()` and
+  `stats.divergence_score()` to the existing `roundoff_floor()` calculation
+  instead of forwarding the raw hash-difference signal unconditionally.
+- Generated: rewrote `detequal/stats.py` (pairwise, per-dtype relative-error
+  grading against full captured tensors, with a majority-of-pairs rule and a
+  documented fallback to the prior hash-only behavior when full tensors
+  weren't captured); added `tests/test_stats.py` covering round-off-floor
+  scaling, sub-floor perturbations, genuine majority divergence, single-run
+  outlier suppression, and the no-full-tensor fallback.
+- Human review: installed the project's dev environment and ran the full
+  suite plus `ruff check`/`ruff format` locally; one design flaw was caught
+  and fixed during that verification (comparing each run to the elementwise
+  mean let a single outlier drag the mean and falsely flag the *other*,
+  consistent runs - switched to pairwise cross-run comparison, which is
+  robust to that). All 19 tests plus linting format pass.

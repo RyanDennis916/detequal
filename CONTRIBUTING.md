@@ -20,7 +20,7 @@ reports, and pull requests are all welcome.
 ## Development setup
 
 ```bash
-git clone https://github.com/OWNER/detequal
+git clone https://github.com/RyanDennis916/detequal
 cd detequal
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"

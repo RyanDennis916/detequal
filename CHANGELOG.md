@@ -15,6 +15,17 @@ reaches a first tagged release.
 - First unit test: two seeded runs of a deterministic toy model are
   byte-identical.
 
+### Changed
+- `stats.is_significant()` and `stats.divergence_score()` now use
+  `roundoff_floor()` when full tensors were captured
+  (`capture_full_tensors=True`): divergence is graded against a per-dtype,
+  magnitude-scaled relative-error floor via pairwise cross-run comparison,
+  and flagged only when a majority of run-pairs exceed it, so a single
+  outlier run can no longer trip a false positive. `divergence_score()` is
+  now continuous (saturating in `[0, 1)`) instead of binary in this case.
+  Both still fall back to the previous conservative hash-only behavior
+  (over-flags) when full tensors weren't captured.
+
 ## [0.0.1] — 2026-09-07
 
 ### Added

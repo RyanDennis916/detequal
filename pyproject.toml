@@ -50,21 +50,18 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Everything needed to run the test suite and reproduce the validation tables.
+# Everything needed to run the test suite 
 dev = [
     "pytest>=8.0",
     "pytest-cov>=5.0",
     "ruff>=0.6",
 ]
-# Extras for the example notebooks / empirical study (section 6). Kept out of
-# the core install so a reviewer installing from the README stays lightweight.
 examples = [
     "jupyter>=1.0",
     "matplotlib>=3.8",
 ]
 
 [project.urls]
-# Filled with the real repo URL on Day 1 once the public repo exists.
 Homepage = "https://github.com/RyanDennis916/detequal.git"
 Repository = "https://github.com/RyanDennis916/detequal.git"
 Issues = "https://github.com/RyanDennis916/detequal/issues"
