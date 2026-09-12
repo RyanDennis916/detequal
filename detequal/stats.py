@@ -30,7 +30,7 @@ def _gradable_tensors(snapshots: list[Any]) -> list[torch.Tensor] | None:
 
 
 def _pairwise_max_diffs(tensors: list[torch.Tensor]) -> list[float]:
- 
+
     return [(a - b).abs().max().item() for a, b in combinations(tensors, 2)]
 
 
