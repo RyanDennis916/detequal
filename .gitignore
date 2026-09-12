@@ -22,6 +22,7 @@ coverage.xml
 
 # Notebooks
 .ipynb_checkpoints/
+detequal_Master_Proposal.docx.pdf
 
 # detequal run artifacts (traces, reports) — do not commit generated data
 report.json
